@@ -1,9 +1,18 @@
-MAIN = Lumina_Retail_Informe
+MAIN := Lumina_Retail_Informe
+LATEXMK := latexmk
+FLAGS := -pdf -interaction=nonstopmode -halt-on-error
 
-.PHONY: all clean
+.PHONY: all pdf clean rebuild open
 
-all:
-	latexmk -pdf -interaction=nonstopmode -halt-on-error $(MAIN).tex
+all: pdf
+
+pdf:
+	$(LATEXMK) $(FLAGS) $(MAIN).tex
 
 clean:
-	latexmk -c $(MAIN).tex
+	$(LATEXMK) -C $(MAIN).tex
+
+rebuild: clean pdf
+
+open: pdf
+	explorer.exe "$$(wslpath -w $(MAIN).pdf)"

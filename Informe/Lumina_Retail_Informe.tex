@@ -18,7 +18,7 @@
 \definecolor{acento}{HTML}{284B4F}
 \definecolor{gris}{HTML}{555555}
 \definecolor{suave}{HTML}{F3F5F5}
-\hypersetup{pdftitle={Lumina Retail: Plataforma de datos para una operación integrada},pdfauthor={RetailSmart Global},pdflang={es-PE},bookmarksnumbered=true}
+\hypersetup{pdftitle={Lumina Retail: El retail que ve, decide y actúa en tiempo real},pdfauthor={RetailSmart Global},pdflang={es-PE},bookmarksnumbered=true}
 \input{parametros}
 \graphicspath{{./}{figuras/conceptuales/}{../Lumina_Retail_Imagenes_Editoriales_Actual/01_portadas/}{../Lumina_Retail_Imagenes_Editoriales_Actual/03_vinetas/}{../Lumina_Retail_Imagenes_Editoriales_Actual/02_apoyo/derivados_pdf/}{../Lumina_Retail_Imagenes_Editoriales_Actual/05_anexos_originales/derivados_pdf/}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
@@ -133,13 +133,13 @@
 \newcommand{\LuminaDetalleBegin}{%
   \clearpage
   \FloatBarrier
-  \newgeometry{margin=15mm}%
-  \paperwidth=1450mm
-  \paperheight=1020mm
+  \newgeometry{margin=10mm}%
+  \paperwidth=297mm
+  \paperheight=210mm
   \pdfpagewidth=\paperwidth
   \pdfpageheight=\paperheight
-  \textwidth=1420mm
-  \textheight=990mm
+  \textwidth=277mm
+  \textheight=190mm
   \hsize=\textwidth
   \linewidth=\textwidth
   \columnwidth=\textwidth
@@ -168,23 +168,23 @@
 \hypersetup{pageanchor=false}
 \begin{titlepage}
 \centering
-\vspace*{15mm}
-{\large RetailSmart Global\par}
-\vspace{29mm}
-{\LARGE\bfseries Lumina Retail: Plataforma de datos para una operación integrada\par}
-\vspace{12mm}
-{\large Integración de demanda, inventario y logística\par}
+\vspace*{18mm}
+{\fontsize{40}{46}\selectfont\bfseries Lumina Retail\par}
 \vspace{9mm}
+{\fontsize{20}{31}\selectfont\bfseries
+Datos conectados.\\[2mm]
+Operación sincronizada.\par}
+\vspace{7mm}
 {\color{acento}\rule{35mm}{.7pt}\par}
-\vspace{10mm}
-{\normalsize Propuesta ejecutiva de Arquitectura de Solución\par}
-{\normalsize Solución objetivo y hoja de ruta de implementación\par}
-\vspace{5mm}
-\LuminaPortada
+\vspace{7mm}
+{\fontsize{16}{20}\selectfont
+Anticipar la demanda. Optimizar el inventario.\\
+Acelerar la entrega.\par}
+\vspace{2mm}
+\resizebox{1\textwidth}{!}{\LuminaPortada}
 \vfill
-{\normalsize Arquitectura y datos\par}
-{\normalsize\FechaInforme\par}
-\vspace{12mm}
+{\normalsize RetailSmart Global\\2026\par}
+\vspace*{8mm}
 \end{titlepage}
 
 \pagenumbering{roman}
@@ -763,7 +763,11 @@ Las siguientes láminas representan vistas del modelo de solución y permiten re
 \vspace{5mm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=1360mm,height=930mm,keepaspectratio]{08_integracion_detallada_tobe.pdf}
+\includegraphics[
+  width=\linewidth,
+  height=165mm,
+  keepaspectratio
+]{08_integracion_detallada_tobe.pdf}
 \caption{Vista detallada de componentes e integración}\label{fig:integracion-detallada}
 \Fuente{Modelo de solución elaborado por el equipo~\cite{modelo-solucion}}
 \end{figure}
