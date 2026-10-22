@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1080" viewBox="0 0 1400 1080">
+<rect width="100%" height="100%" fill="white"/>
+<text x="50" y="62.0" text-anchor="start" font-family="DejaVu Serif" font-size="39" font-weight="700" fill="#222222">Un evento, varios controles</text>
+<text x="50" y="108.0" text-anchor="start" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Ejemplo lógico con stock_event · apartados 6.2 a 6.5</text>
+<polyline points="50,130 1350,130" fill="none" stroke="#333333" stroke-width="1.4"/>
+<rect x="520" y="160" width="360" height="125" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="700.0" y="199.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Recepción</text>
+<text x="700.0" y="234.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">stock_event</text>
+<text x="700.0" y="268.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Identidad y origen</text>
+<rect x="50" y="355" width="360" height="120" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="230.0" y="394.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Bronze</text>
+<text x="230.0" y="429.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Original y metadatos</text>
+<text x="230.0" y="463.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">para conciliación</text>
+<rect x="520" y="355" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="700.0" y="394.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Validación</text>
+<text x="700.0" y="429.0" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Campos, tipos, unidades</text>
+<text x="700.0" y="462.12" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">y claves de referencia</text>
+<rect x="990" y="355" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="1170.0" y="394.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Ruta controlada</text>
+<text x="1170.0" y="429.0" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Conservar el original</text>
+<text x="1170.0" y="462.12" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">y el motivo del error</text>
+<rect x="50" y="565" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="230.0" y="604.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Duplicado</text>
+<text x="230.0" y="639.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Registrar repetición</text>
+<text x="230.0" y="673.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">sin duplicar el efecto</text>
+<rect x="520" y="565" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="700.0" y="604.0" text-anchor="middle" font-family="DejaVu Serif" font-size="27" font-weight="700" fill="#222222">Identidad y tiempo</text>
+<text x="700.0" y="639.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Comprobar repetición</text>
+<text x="700.0" y="673.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">y vigencia del dato</text>
+<rect x="990" y="565" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="1170.0" y="604.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Evento tardío</text>
+<text x="1170.0" y="639.0" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Aplicar política temporal</text>
+<text x="1170.0" y="672.12" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">y proteger la vigencia</text>
+<rect x="50" y="790" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="230.0" y="829.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Reproceso</text>
+<text x="230.0" y="864.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Recuperar el original</text>
+<text x="230.0" y="898.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">con la misma identidad</text>
+<rect x="520" y="790" width="360" height="120" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="700.0" y="829.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Silver</text>
+<text x="700.0" y="864.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Datos normalizados</text>
+<text x="700.0" y="898.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">y controlados</text>
+<rect x="990" y="790" width="360" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="1170.0" y="829.0" text-anchor="middle" font-family="DejaVu Serif" font-size="29" font-weight="700" fill="#222222">Señal y consumo</text>
+<text x="1170.0" y="864.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Evaluar la regla</text>
+<text x="1170.0" y="898.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">de negocio aplicable</text>
+<polyline points="700,285 700,355" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="700,355 705.5,342.0 694.5,342.0" fill="#333333"/>
+<polyline points="520,218 230,218 230,355" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="230,355 235.5,342.0 224.5,342.0" fill="#333333"/>
+<text x="365" y="207.0" text-anchor="middle" font-family="DejaVu Sans" font-size="21" font-weight="400" fill="#222222">En paralelo</text>
+<polyline points="880,415 990,415" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="990,415 977.0,409.5 977.0,420.5" fill="#333333"/>
+<text x="935" y="400.0" text-anchor="middle" font-family="DejaVu Sans" font-size="20" font-weight="400" fill="#222222">Inválido</text>
+<polyline points="700,475 700,565" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="700,565 705.5,552.0 694.5,552.0" fill="#333333"/>
+<text x="750" y="530.0" text-anchor="start" font-family="DejaVu Sans" font-size="21" font-weight="400" fill="#222222">Válido</text>
+<polyline points="520,625 410,625" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="410,625 423.0,630.5 423.0,619.5" fill="#333333"/>
+<polyline points="880,625 990,625" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="990,625 977.0,619.5 977.0,630.5" fill="#333333"/>
+<text x="935" y="610.0" text-anchor="middle" font-family="DejaVu Sans" font-size="20" font-weight="400" fill="#222222">Tardío</text>
+<polyline points="700,685 700,790" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="700,790 705.5,777.0 694.5,777.0" fill="#333333"/>
+<text x="750" y="741.0" text-anchor="start" font-family="DejaVu Sans" font-size="21" font-weight="400" fill="#222222">Vigente</text>
+<polyline points="1170,685 1170,735 864,735 864,790" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="864,790 869.5,777.0 858.5,777.0" fill="#333333"/>
+<polyline points="880,850 990,850" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="990,850 977.0,844.5 977.0,855.5" fill="#333333"/>
+<polyline points="50,415 25,415 25,850 50,850" fill="none" stroke="#333333" stroke-width="2.2" stroke-dasharray="8 6"/>
+<polygon points="50,850 37.0,844.5 37.0,855.5" fill="#333333"/>
+<polyline points="410,850 465,850 465,298 550,298 550,355" fill="none" stroke="#333333" stroke-width="2.2" stroke-dasharray="8 6"/>
+<polygon points="550,355 555.5,342.0 544.5,342.0" fill="#333333"/>
+<rect x="414" y="582" width="102" height="34" rx="0" fill="white" stroke="white" stroke-width="1.8"/>
+<text x="465" y="610.0" text-anchor="middle" font-family="DejaVu Sans" font-size="20" font-weight="400" fill="#222222">Repetido</text>
+<polyline points="50,980 1350,980" fill="none" stroke="#333333" stroke-width="1"/>
+<text x="700" y="1019.0" text-anchor="middle" font-family="DejaVu Sans" font-size="22" font-weight="400" fill="#222222">Responsabilidades lógicas de control; no incorpora servicios ni tipos de evento nuevos.</text>
+</svg>

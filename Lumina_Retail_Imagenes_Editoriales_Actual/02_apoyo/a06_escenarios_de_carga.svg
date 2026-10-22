@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940">
+<rect width="100%" height="100%" fill="white"/>
+<text x="50" y="62.0" text-anchor="start" font-family="DejaVu Serif" font-size="39" font-weight="700" fill="#222222">Escenarios de carga para validar</text>
+<text x="50" y="108.0" text-anchor="start" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Tasas de entrada propuestas en el informe · apartados 6.6 y 9.1 a 9.5</text>
+<polyline points="50,130 1350,130" fill="none" stroke="#333333" stroke-width="1.4"/>
+<polyline points="330.0,225 330.0,590" fill="none" stroke="#333333" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="330.0" y="625.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">0</text>
+<polyline points="565.0,225 565.0,590" fill="none" stroke="#333333" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="565.0" y="625.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">100</text>
+<polyline points="800.0,225 800.0,590" fill="none" stroke="#333333" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="800.0" y="625.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">200</text>
+<polyline points="1035.0,225 1035.0,590" fill="none" stroke="#333333" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="1035.0" y="625.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">300</text>
+<polyline points="1270.0,225 1270.0,590" fill="none" stroke="#333333" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="1270.0" y="625.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">400</text>
+<text x="280" y="305.0" text-anchor="end" font-family="DejaVu Sans" font-size="29" font-weight="400" fill="#222222">Nominal</text>
+<text x="280" y="510.0" text-anchor="end" font-family="DejaVu Sans" font-size="29" font-weight="400" fill="#222222">Pico</text>
+<rect x="330" y="255" width="47.0" height="80" rx="0" fill="#d6d6d6" stroke="#333333" stroke-width="1.8"/>
+<text x="394.0" y="307.0" text-anchor="start" font-family="DejaVu Sans" font-size="30" font-weight="700" fill="#222222">20</text>
+<rect x="330" y="460" width="940.0" height="80" rx="0" fill="#7e7e7e" stroke="#333333" stroke-width="1.8"/>
+<text x="1287.0" y="512.0" text-anchor="start" font-family="DejaVu Sans" font-size="30" font-weight="700" fill="#222222">400</text>
+<polyline points="330,590 1270,590" fill="none" stroke="#333333" stroke-width="2"/>
+<text x="800" y="673.0" text-anchor="middle" font-family="DejaVu Sans" font-size="28" font-weight="400" fill="#222222">Eventos por segundo</text>
+<text x="700" y="747.0" text-anchor="middle" font-family="DejaVu Sans" font-size="28" font-weight="400" fill="#222222">Pico: 2 h/día durante 3 días · evento medio: 1.5 KiB</text>
+<text x="700" y="794.0" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Observar p95, errores, backlog y tiempo de recuperación.</text>
+<polyline points="50,840 1350,840" fill="none" stroke="#333333" stroke-width="1"/>
+<text x="700" y="879.0" text-anchor="middle" font-family="DejaVu Sans" font-size="22" font-weight="400" fill="#222222">Hipótesis de validación; no es una medición de rendimiento ni capacidad certificada.</text>
+</svg>

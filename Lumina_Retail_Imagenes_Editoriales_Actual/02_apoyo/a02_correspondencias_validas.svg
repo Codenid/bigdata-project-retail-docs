@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="950" viewBox="0 0 1400 950">
+<rect width="100%" height="100%" fill="white"/>
+<text x="50" y="62.0" text-anchor="start" font-family="DejaVu Serif" font-size="39" font-weight="700" fill="#222222">Fuentes independientes, correspondencias sustentadas</text>
+<text x="50" y="108.0" text-anchor="start" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Cada conjunto conserva su contexto · apartados 4.2, 4.4 y 4.6</text>
+<polyline points="50,130 1350,130" fill="none" stroke="#333333" stroke-width="1.4"/>
+<rect x="50" y="195" width="370" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="235.0" y="234.0" text-anchor="middle" font-family="DejaVu Serif" font-size="27" font-weight="700" fill="#222222">Olist</text>
+<rect x="505" y="195" width="365" height="120" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="687.5" y="234.0" text-anchor="middle" font-family="DejaVu Serif" font-size="26" font-weight="700" fill="#222222">Pedidos y entregas</text>
+<polyline points="420,255 505,255" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="505,255 492.0,249.5 492.0,260.5" fill="#333333"/>
+<rect x="50" y="375" width="370" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="235.0" y="414.0" text-anchor="middle" font-family="DejaVu Serif" font-size="27" font-weight="700" fill="#222222">UCI Online Retail</text>
+<rect x="505" y="375" width="365" height="120" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="687.5" y="414.0" text-anchor="middle" font-family="DejaVu Serif" font-size="26" font-weight="700" fill="#222222">Patrones de compra</text>
+<polyline points="420,435 505,435" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="505,435 492.0,429.5 492.0,440.5" fill="#333333"/>
+<rect x="50" y="555" width="370" height="120" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="235.0" y="594.0" text-anchor="middle" font-family="DejaVu Serif" font-size="27" font-weight="700" fill="#222222">theLook eCommerce</text>
+<rect x="505" y="555" width="365" height="120" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="687.5" y="594.0" text-anchor="middle" font-family="DejaVu Serif" font-size="26" font-weight="700" fill="#222222">Estructura</text>
+<text x="687.5" y="629.88" text-anchor="middle" font-family="DejaVu Serif" font-size="26" font-weight="700" fill="#222222">de referencia</text>
+<polyline points="420,615 505,615" fill="none" stroke="#333333" stroke-width="2.2"/>
+<polygon points="505,615 492.0,609.5 492.0,620.5" fill="#333333"/>
+<polyline points="915,178 915,728" fill="none" stroke="#333333" stroke-width="1.1" stroke-dasharray="8 6"/>
+<rect x="960" y="195" width="390" height="230" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="1155.0" y="234.0" text-anchor="middle" font-family="DejaVu Serif" font-size="27" font-weight="700" fill="#222222">Escenario controlado</text>
+<text x="1155.0" y="269.0" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Catálogo seleccionado</text>
+<text x="1155.0" y="302.12" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Mapa de SKU versionado</text>
+<text x="1155.0" y="335.24" text-anchor="middle" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Origen y vigencia visibles</text>
+<rect x="960" y="500" width="390" height="170" rx="8" fill="white" stroke="#333333" stroke-width="1.8"/>
+<text x="1155.0" y="539.0" text-anchor="middle" font-family="DejaVu Serif" font-size="27" font-weight="700" fill="#222222">Sin equivalencia</text>
+<text x="1155.0" y="574.0" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">Conservar separado</text>
+<text x="1155.0" y="608.5" text-anchor="middle" font-family="DejaVu Sans" font-size="25" font-weight="400" fill="#222222">y marcar la excepción</text>
+<text x="700" y="772.0" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">No unir fuentes por coincidencia de identificador, descripción o importe.</text>
+<text x="700" y="809.26" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Agregar observaciones a una granularidad compatible antes de cruzarlas.</text>
+<polyline points="50,850 1350,850" fill="none" stroke="#333333" stroke-width="1"/>
+<text x="700" y="889.0" text-anchor="middle" font-family="DejaVu Sans" font-size="22" font-weight="400" fill="#222222">Los conjuntos públicos no representan por sí solos la operación real de RetailSmart.</text>
+</svg>

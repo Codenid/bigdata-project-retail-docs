@@ -3,13 +3,13 @@
 % Las decisiones pertenecen a la Arquitectura de Solución y al diseño aprobado.
 % Las escenas ilustran conceptos de negocio; no especifican contratos o servicios.
 
-\providecommand{\LuminaAnchoFigura}{0.82\linewidth}
+\providecommand{\LuminaAnchoFigura}{0.55\linewidth}
 \providecommand{\LuminaRutaFiguras}{figuras/conceptuales/}
 
 \newcommand{\LuminaFigura}[4]{%
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\LuminaAnchoFigura,height=8.5cm,keepaspectratio]{\LuminaRutaFiguras#1}%
+    \includegraphics[width=\LuminaAnchoFigura,height=4.8cm,keepaspectratio]{\LuminaRutaFiguras#1}%
     \caption[#2]{#3}%
     \label{#4}%
   \end{figure}%
@@ -39,7 +39,7 @@
     \centering
     \begin{minipage}{\LuminaAnchoFigura}
       \centering
-      \includegraphics[width=\linewidth,height=8.5cm,keepaspectratio]{\LuminaRutaFiguras03_bronze_silver_gold_tres_mesas.png}\par
+      \includegraphics[width=\linewidth,height=4.8cm,keepaspectratio]{\LuminaRutaFiguras03_bronze_silver_gold_tres_mesas.png}\par
       \smallskip
       \parbox[t]{0.32\linewidth}{\centering\small\textbf{Bronze}\\Conservar}%
       \hfill
@@ -66,6 +66,6 @@
 
 \newcommand{\LuminaValor}{%
   \LuminaFigura{06_alerta_valor.png}{De la alerta al valor}%
-  {El valor esperado se verifica relacionando una señal con la actuación realizada, su resultado operativo y el costo asociado.}%
+  {El valor esperado se verifica relacionando una señal con la actuación realizada y su resultado operativo.}%
   {fig:concepto-valor}%
 }

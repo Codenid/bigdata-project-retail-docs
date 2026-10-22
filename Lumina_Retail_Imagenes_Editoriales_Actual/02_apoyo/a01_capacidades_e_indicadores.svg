@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1020" viewBox="0 0 1400 1020">
+<rect width="100%" height="100%" fill="white"/>
+<text x="50" y="62.0" text-anchor="start" font-family="DejaVu Serif" font-size="39" font-weight="700" fill="#222222">Cuatro capacidades para mejorar la atención</text>
+<text x="50" y="108.0" text-anchor="start" font-family="DejaVu Sans" font-size="24" font-weight="400" fill="#222222">Lectura visual de los objetivos del informe · apartado 3.2</text>
+<polyline points="50,130 1350,130" fill="none" stroke="#333333" stroke-width="1.4"/>
+<rect x="50" y="180" width="600" height="255" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="350.0" y="219.0" text-anchor="middle" font-family="DejaVu Serif" font-size="31" font-weight="700" fill="#222222">V1 · Tiempo real</text>
+<text x="350.0" y="254.0" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Disponibilidad y señales</text>
+<text x="350.0" y="291.26" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Detectar riesgo de quiebre</text>
+<text x="350.0" y="328.52" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Meta nominal: alerta p95 ≤60 s</text>
+<rect x="750" y="180" width="600" height="255" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="1050.0" y="219.0" text-anchor="middle" font-family="DejaVu Serif" font-size="31" font-weight="700" fill="#222222">V2 · Inventario diario</text>
+<text x="1050.0" y="254.0" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Consolidación y planificación</text>
+<text x="1050.0" y="291.26" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Plan por producto y ubicación</text>
+<text x="1050.0" y="328.52" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Meta: antes de las 07:00, Lima</text>
+<rect x="50" y="510" width="600" height="255" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="350.0" y="549.0" text-anchor="middle" font-family="DejaVu Serif" font-size="31" font-weight="700" fill="#222222">V3 · Control operativo</text>
+<text x="350.0" y="584.0" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Indicadores conciliados</text>
+<text x="350.0" y="621.26" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Comparar el nivel de servicio</text>
+<text x="350.0" y="658.52" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Medir diferencias y tiempos</text>
+<rect x="750" y="510" width="600" height="255" rx="8" fill="#f3f3f3" stroke="#333333" stroke-width="1.8"/>
+<text x="1050.0" y="549.0" text-anchor="middle" font-family="DejaVu Serif" font-size="31" font-weight="700" fill="#222222">V4 · Mantenimiento</text>
+<text x="1050.0" y="584.0" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Condición de activos</text>
+<text x="1050.0" y="621.26" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Priorizar revisión operativa</text>
+<text x="1050.0" y="658.52" text-anchor="middle" font-family="DejaVu Sans" font-size="27" font-weight="400" fill="#222222">Medir detección y precisión</text>
+<text x="700" y="856.0" text-anchor="middle" font-family="DejaVu Sans" font-size="28" font-weight="400" fill="#222222">El dato apoya una decisión; el beneficio requiere una actuación registrada.</text>
+<polyline points="50,920 1350,920" fill="none" stroke="#333333" stroke-width="1"/>
+<text x="700" y="959.0" text-anchor="middle" font-family="DejaVu Sans" font-size="22" font-weight="400" fill="#222222">Indicadores propuestos; no representan resultados medidos.</text>
+</svg>
