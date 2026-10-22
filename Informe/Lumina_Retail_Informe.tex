@@ -7,6 +7,7 @@
 \usepackage{lmodern,microtype}
 \usepackage[a4paper,top=25mm,bottom=25mm,left=25mm,right=25mm,headheight=14pt]{geometry}
 \usepackage{graphicx,xcolor,booktabs,tabularx,longtable,array}
+\input{integracion/figuras_conceptuales.tex}
 \usepackage{amsmath,amssymb,xfp}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,babel}
@@ -18,7 +19,7 @@
 \definecolor{suave}{HTML}{F3F5F5}
 \hypersetup{pdftitle={Lumina Retail: Plataforma de datos para una operación integrada},pdfauthor={RetailSmart Global},pdflang={es-PE},bookmarksnumbered=true}
 \input{parametros}
-\graphicspath{{./}}
+\graphicspath{{./}{figuras/conceptuales/}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\parindent}{0pt}
@@ -78,8 +79,10 @@
 \vspace{9mm}
 {\color{acento}\rule{35mm}{.7pt}\par}
 \vspace{10mm}
-{\normalsize Propuesta ejecutiva de arquitectura empresarial\par}
+{\normalsize Propuesta ejecutiva de Arquitectura de Solución\par}
 {\normalsize Solución objetivo y hoja de ruta de implementación\par}
+\vspace{5mm}
+\LuminaPortada
 \vfill
 {\normalsize Arquitectura y datos\par}
 {\normalsize\FechaInforme\par}
@@ -131,7 +134,7 @@ El proceso comprende captura de demanda, validación de inventario, preparación
 \begin{figure}[!htbp]
 \centering\includegraphics[width=\linewidth]{proceso_asis.png}
 \caption[Atención de pedidos en la situación actual]{Atención de pedidos en la situación actual.}\label{fig:proceso-asis}
-\Fuente{arquitectura de referencia de RetailSmart}
+\Fuente{Modelo de solución elaborado por el equipo~\cite{modelo-solucion}}
 \end{figure}
 
 \subsection{Fragmentación de inventarios, silos y congestión logística}
@@ -149,6 +152,7 @@ Telemetría sin análisis integrado & Detección tardía de condiciones anómala
 \end{tabularx}
 \end{table}
 La frecuencia y el impacto de las incidencias se medirán como línea base. El diagnóstico identifica mecanismos de impacto, sin atribuir a la plataforma mejoras todavía no observadas.
+\LuminaSilos
 
 % ================================================================
 \Seccion{Objetivos, alcance y criterios de éxito}\label{sec:objetivos}
@@ -172,6 +176,7 @@ La solución debe integrar eventos e históricos, relacionar entidades, conserva
 
 \subsection{Indicadores y método de medición}
 El p95 es el tiempo dentro del cual se completa el 95\,\% de los casos medidos. Se medirá por intervalos de carga y por tipo de evento, sin ocultar errores o datos tardíos. Los totales se conciliarán a igual granularidad y las señales conservarán entidad, momento y causa. El beneficio se estimará comparando períodos o grupos equivalentes y registrando la actuación; la detección técnica no equivale automáticamente a una incidencia evitada.
+\LuminaValor
 
 \subsection{Supuestos, restricciones, dependencias y exclusiones}
 Se asumen fuentes accesibles, correspondencias válidas de SKU y ubicación y responsables capaces de actuar. Se mantiene la estrategia híbrida con predominio sintético para validación y al menos un dataset público de referencia. Se excluyen del diseño detallado inicial la sustitución del ERP, la ejecución de pagos o despachos y un despliegue productivo multirregión. Las metas y retenciones se ajustarán con datos medidos. La propiedad de los datos permanece en RetailSmart.
@@ -195,6 +200,7 @@ La evaluación identifica dónde aporta cada conjunto; no demuestra representati
 
 \subsection{Estrategia híbrida con predominio sintético}
 La validación usará escenarios reproducibles para controlar tasas, anomalías y relaciones entre entidades. Un histórico público aportará estructura y una referencia transaccional; Olist es un candidato para el escenario logístico y UCI para ventas. En producción, estos conjuntos se sustituyen por fuentes empresariales. El histórico público y el generador no se presentarán como datos reales de los clientes de RetailSmart.
+\LuminaFuentes
 
 \subsection{Correspondencia entre fuentes, entidades y verticales}
 Las entidades principales son producto, ubicación, pedido, envío, activo y tiempo. SKU y ubicación relacionan disponibilidad con demanda; pedido o envío relaciona transacciones con tracking; activo y ubicación vinculan telemetría con operación. La matriz del anexo~\ref{anexo:matriz} detalla esta correspondencia. Una fuente puede servir a varias verticales sin duplicar su definición ni atribuirle cobertura que no posee.
@@ -214,16 +220,18 @@ Anomalía de activo & Temperatura que supera un umbral configurable & Activo, ev
 Los datasets se conservan independientes. No se unen clientes o productos por coincidencia de identificador, descripción o importe. El generador puede tomar un catálogo seleccionado y registrar un mapa versionado hacia los SKU del escenario. Un registro sin equivalencia sustentada se mantiene separado y se marca como tal. Antes de cruzar varias observaciones con una venta se agrega a una granularidad compatible para evitar multiplicar importes.
 
 % ================================================================
-\Seccion{Arquitectura de solución de extremo a extremo}\label{sec:arquitectura}
+\Seccion{Arquitectura de Solución de extremo a extremo}\label{sec:arquitectura}
 \subsection{Principios y decisiones de diseño}
 El diseño preserva la autoridad de los sistemas operativos, desacopla publicación y consumo, conserva evidencia de origen y separa calidad de datos de su uso. El cómputo continuo se reserva a decisiones cuya utilidad disminuye con la demora. El procesamiento batch consolida históricos y planes. Las responsabilidades lógicas no obligan a crear un servicio o job independiente por cada caja del diagrama.
+
+La Arquitectura de Solución documenta las decisiones arquitectónicas y su correspondencia con componentes, flujos, contratos y tecnologías. Sus vistas representan el modelo de solución. ArchiMate puede utilizarse como notación de modelado. El catálogo y las especificaciones de contratos se mantienen consistentes con el diseño aprobado y con su versión.
 
 \subsection{Vista de negocio y relación con las verticales}
 La atención inteligente de pedidos incorpora captura e integración de demanda, evaluación de disponibilidad, decisión operativa y mejora continua. Las alertas de V1 apoyan reacción; V2 prepara decisiones diarias; V3 permite comparar nivel de servicio y desempeño; V4 protege la capacidad operativa. La figura~\ref{fig:proceso-tobe} vincula estas capacidades con el recorrido del pedido.
 \begin{figure}[!htbp]
 \centering\includegraphics[width=\linewidth]{proceso_tobe.png}
 \caption[Atención inteligente de pedidos propuesta]{Atención inteligente de pedidos propuesta.}\label{fig:proceso-tobe}
-\Fuente{arquitectura de referencia de RetailSmart}
+\Fuente{Modelo de solución elaborado por el equipo~\cite{modelo-solucion}}
 \end{figure}
 
 \subsection{Vista de aplicaciones y servicios de datos}
@@ -231,9 +239,9 @@ Canales, pedidos, ERP, almacenes y logística conservan sus funciones. La plataf
 
 \subsection{Vista tecnológica y correspondencia con GCP}
 \begin{table}[H]
-\caption{Correspondencia entre componentes lógicos y servicios}\label{tab:componentes}
+\caption{Correspondencia entre componentes de solución y servicios}\label{tab:componentes}
 \small\begin{tabularx}{\linewidth}{@{}P{.32\linewidth}YY@{}}\toprule
-Componente de arquitectura & Materialización prevista & Responsabilidad\\\midrule
+Componente de solución & Materialización prevista & Responsabilidad\\\midrule
 Tópico Eventos Retail & Pub/Sub & Desacoplar productores de consumidores.\\
 Procesamiento Streaming & Apache Beam en Dataflow & Validar, normalizar y evaluar reglas o ventanas.\\
 Bronze Eventos Raw & Cloud Storage & Conservar payload y origen.\\
@@ -244,7 +252,7 @@ Gold Insights Retail & BigQuery & Preparar resultados de consulta y exposición.
 \end{table}
 
 \subsection{Recorrido por ingesta, procesamiento, almacenamiento y exposición}
-La figura~\ref{fig:arquitectura-vector} resume el flujo sin sustituir el detalle de ArchiMate. La persistencia raw y la evaluación de señales pueden avanzar en paralelo, coordinadas por identidad y conciliación. No es necesario leer un archivo Bronze para producir cada alerta. La exposición integra resultados mediante consultas y servicios de datos.
+La figura~\ref{fig:arquitectura-vector} resume el flujo sin sustituir las vistas detalladas de la Arquitectura de Solución. La persistencia raw y la evaluación de señales pueden avanzar en paralelo, coordinadas por identidad y conciliación. No es necesario leer un archivo Bronze para producir cada alerta. La exposición integra resultados mediante consultas y servicios de datos.
 \begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\footnotesize,
@@ -271,7 +279,7 @@ La figura~\ref{fig:arquitectura-vector} resume el flujo sin sustituir el detalle
 \draw[linea] (gold)--(consumo);
 \end{tikzpicture}
 \caption[Síntesis vectorial de la arquitectura de datos]{Síntesis vectorial de la arquitectura de datos. Las flechas expresan flujos lógicos de captura, curación, análisis y exposición.}\label{fig:arquitectura-vector}
-\Fuente{elaboración a partir de la arquitectura de referencia de RetailSmart}
+\Fuente{síntesis propia alineada con el modelo de solución~\cite{modelo-solucion}}
 \end{figure}
 
 \subsection{Trazabilidad entre elementos, componentes y requisitos}
@@ -324,6 +332,8 @@ Silver & Datos normalizados con claves y unidades consistentes & Reglas de calid
 Gold & Señales, planes e indicadores por granularidad de negocio & Definición del indicador, vigencia y permisos de consumo.\\\bottomrule
 \end{tabularx}
 \end{table}
+
+\LuminaCapas
 
 \subsection{Formatos, particionamiento y organización física}
 Bronze conserva JSON y formatos originales. Silver usa Parquet para lectura selectiva y compresión; se organiza por fuente, tipo y fecha del evento. Gold particiona por fecha del negocio y agrupa por claves utilizadas en consultas. Se propone compactar archivos para evitar objetos pequeños y separar temporales técnicos. Región de cómputo y ubicaciones de datos deben ser compatibles.
@@ -409,6 +419,7 @@ Como criterio de alta disponibilidad, se evita introducir coordinadores autogest
 
 \subsection{Indisponibilidad del inventario de una tienda}
 Se mantiene la última lectura como referencia y se marca su vigencia. Operaciones debe saber que la fuente está degradada antes de confirmar un compromiso. La venta se valida en el sistema transaccional o mediante una alternativa operativa autorizada. Un heartbeat o una regla de frescura permite proponer detección de indisponibilidad en cinco minutos o menos, pendiente de prueba.
+\LuminaContinuidad
 
 \subsection{Tolerancia a fallos y recuperación del procesamiento}
 Los mensajes retenidos, los originales y los puntos persistidos permiten retomar el flujo. Se recupera configuración y permisos y se reprocesa con la misma identidad lógica. La conciliación debe comparar entradas, duplicados, rechazados y resultados. Los consumidores de señales también deben controlar repetición; la garantía interna del runner no basta para una acción externa exactamente una vez~\cite{exactlyonce}.
@@ -438,6 +449,7 @@ El catálogo documenta propósito, fuente, owner o responsable, granularidad, es
 
 \subsection{Linaje desde la fuente hasta el consumo}
 Un indicador o una señal debe poder rastrearse hasta su evento o lote, la transformación aplicada y la versión de regla o modelo. Se conserva la correspondencia entre fuente y entidad del escenario. El linaje lógico se diseña desde el inicio y la evidencia automática se incorpora con los pipelines. Una flecha en el diagrama expresa una relación prevista, no prueba que el linaje técnico ya esté implementado.
+\LuminaGobierno
 
 \subsection{Reglas de calidad e incumplimientos}
 Las reglas cubren completitud, tipo, rango, unidad, unicidad, frescura y referencia válida. Se concilian entradas con válidos, duplicados y rechazados usando categorías excluyentes definidas para cada conteo. Un incumplimiento conserva causa y origen y puede impedir publicar un período o activar una señal. Los umbrales se acuerdan con el uso del dato y se revisan con los usuarios.
@@ -520,6 +532,7 @@ La prioridad es completar un recorrido de inventario y pedidos antes de expandir
 \bibitem{olist} Olist. \textit{Brazilian E-Commerce Public Dataset}. \url{https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce}.
 \bibitem{uci} Chen, D. (2015). \textit{Online Retail}. UCI Machine Learning Repository. DOI: 10.24432/C5BW33. \url{https://archive.ics.uci.edu/dataset/352/online+retail}.
 \bibitem{thelook} Google Cloud. \textit{BigQuery meets Google ADK and MCP}. Descripción del origen sintético de theLook. \url{https://cloud.google.com/blog/products/ai-machine-learning/bigquery-meets-google-adk-and-mcp}.
+\bibitem{modelo-solucion} Equipo de RetailSmart Global. \textit{Modelo de la Arquitectura de Solución de Lumina Retail. Vistas AS-IS y TO-BE}. Modelo representado con notación ArchiMate.
 \end{thebibliography}
 
 % ================================================================
@@ -599,14 +612,14 @@ Los identificadores y nombres deberán cotejarse con el catálogo Git antes de u
 Los atributos comunes incluyen proyecto, entorno, dominio, responsable y gestión por script. El detalle de verticales se conserva en el catálogo; un recurso compartido puede usar \path{vertical=multi} cuando proceda. El atributo \path{layer} se reserva para Bronze, Silver o Gold y \path{role} describe ingesta, consumo, función técnica o seguridad. Alcance global y política de residencia se documentan por separado.
 
 \clearpage
-\Seccion{Vistas completas de ArchiMate}\label{anexo:vistas}
-Las siguientes láminas conservan las ocho exportaciones originales. Se utilizan para revisar topología y correspondencia con el modelo. La exportación detallada contiene etiquetas pequeñas; la tabla~\ref{tab:componentes} y la figura vectorial~\ref{fig:arquitectura-vector} proporcionan una lectura tipográfica de los componentes. Para una edición o impresión de gran formato conviene volver a exportar el modelo original a SVG o PDF.
+\Seccion{Vistas de la Arquitectura de Solución}\label{anexo:vistas}
+Las siguientes láminas representan vistas del modelo de solución y permiten revisar la topología y la correspondencia entre componentes. Se elaboraron con notación ArchiMate. La exportación detallada contiene etiquetas pequeñas; la tabla~\ref{tab:componentes} y la figura vectorial~\ref{fig:arquitectura-vector} proporcionan una lectura tipográfica de los componentes. Para una edición o impresión de gran formato conviene volver a exportar el modelo original a SVG o PDF.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth,height=16cm,keepaspectratio]{contexto_asis.png}
 \caption{Vista contextual AS-IS de extremo a extremo}
-\Fuente{arquitectura de referencia de RetailSmart}
+\Fuente{Modelo de solución elaborado por el equipo~\cite{modelo-solucion}}
 \end{figure}
 
 \newcommand{\Lamina}[4]{%
@@ -615,7 +628,7 @@ Las siguientes láminas conservan las ocho exportaciones originales. Se utilizan
 \subsection*{#1}
 \begin{figure}[H]\centering
 \includegraphics[width=.98\linewidth,height=13.0cm,keepaspectratio,#4]{#2}
-\caption{#3}\Fuente{arquitectura de referencia de RetailSmart}
+\caption{#3}\Fuente{Modelo de solución elaborado por el equipo~\cite{modelo-solucion}}
 \end{figure}
 \end{landscape}}
 \Lamina{Contexto de la solución propuesta}{contexto_tobe.png}{Vista contextual TO-BE de extremo a extremo}{}
