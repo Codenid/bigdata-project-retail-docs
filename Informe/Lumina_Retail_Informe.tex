@@ -1,0 +1,629 @@
+% !TeX program = pdflatex
+% Informe editable. Compilar desde esta carpeta con latexmk -pdf.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{spanish.ldf}{\usepackage[spanish,es-tabla]{babel}}{\usepackage[english]{babel}\babelprovide[main,import]{spanish}}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,top=25mm,bottom=25mm,left=25mm,right=25mm,headheight=14pt]{geometry}
+\usepackage{graphicx,xcolor,booktabs,tabularx,longtable,array}
+\usepackage{amsmath,amssymb,xfp}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,babel}
+\usepackage{titlesec,fancyhdr,enumitem,caption,float,placeins,needspace,pdflscape,multicol}
+\usepackage{listings,xurl}
+\usepackage[unicode,hidelinks]{hyperref}
+\definecolor{acento}{HTML}{284B4F}
+\definecolor{gris}{HTML}{555555}
+\definecolor{suave}{HTML}{F3F5F5}
+\hypersetup{pdftitle={Lumina Retail: Plataforma de datos para una operación integrada},pdfauthor={RetailSmart Global},pdflang={es-PE},bookmarksnumbered=true}
+\input{parametros}
+\graphicspath{{./}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{3em}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.18}
+\linespread{1.06}
+\setlist[itemize]{nosep,leftmargin=1.4em,topsep=3pt}
+\setlist[enumerate]{nosep,leftmargin=1.6em,topsep=3pt}
+\captionsetup{font=small,labelfont=bf,skip=6pt}
+\captionsetup[table]{position=top}
+\titleformat{\section}{\Large\bfseries}{\thesection}{.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{.65em}{}
+\titlespacing*{\section}{0pt}{17pt}{8pt}
+\titlespacing*{\subsection}{0pt}{11pt}{4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Lumina Retail}}
+\fancyhead[R]{\small Arquitectura de datos}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\contentsname}{Índice general}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\refname}{Fuentes técnicas y de datos}
+% Babel fija estos títulos al iniciar el documento: se redefinen después.
+\AtBeginDocument{%
+  \renewcommand{\contentsname}{Índice general}%
+  \renewcommand{\listfigurename}{Índice de figuras}%
+  \renewcommand{\listtablename}{Índice de tablas}%
+  \renewcommand{\tablename}{Tabla}%
+  \renewcommand{\refname}{Fuentes técnicas y de datos}%
+}
+\clubpenalty=10000
+\widowpenalty=10000
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\newcommand{\Fuente}[1]{{\footnotesize\textit{Fuente: #1.}}}
+\newcommand{\ID}[1]{\texttt{#1}}
+\newcommand{\Seccion}[1]{\FloatBarrier\Needspace{5\baselineskip}\section{#1}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,frame=single,rulecolor=\color{black!25},columns=fullflexible,keepspaces=true,showstringspaces=false,aboveskip=7pt,belowskip=7pt}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{15mm}
+{\large RetailSmart Global\par}
+\vspace{29mm}
+{\LARGE\bfseries Lumina Retail: Plataforma de datos para una operación integrada\par}
+\vspace{12mm}
+{\large Integración de demanda, inventario y logística\par}
+\vspace{9mm}
+{\color{acento}\rule{35mm}{.7pt}\par}
+\vspace{10mm}
+{\normalsize Propuesta ejecutiva de arquitectura empresarial\par}
+{\normalsize Solución objetivo y hoja de ruta de implementación\par}
+\vfill
+{\normalsize Arquitectura y datos\par}
+{\normalsize\FechaInforme\par}
+\vspace{12mm}
+\end{titlepage}
+
+\pagenumbering{roman}
+\hypersetup{pageanchor=true}
+\clearpage
+\begingroup
+\footnotesize
+\setlength{\parskip}{0pt}
+\linespread{1}\selectfont
+\tableofcontents
+\endgroup
+\clearpage
+\begingroup
+\small
+\setlength{\parskip}{0pt}
+\linespread{1}\selectfont
+\listoffigures
+\medskip
+\listoftables
+\endgroup
+\clearpage
+\pagenumbering{arabic}
+
+% ================================================================
+\Seccion{Resumen ejecutivo}\label{sec:resumen}
+\subsection{Problema de negocio y consecuencias operativas}
+RetailSmart Global dispone de una red amplia de tiendas y almacenes, pero la información de demanda, inventario y entregas está fragmentada. Las doce unidades de negocio, los canales físicos y digitales y las ocho regiones logísticas no cuentan con una visión integrada suficientemente oportuna para coordinar la atención. Durante campañas, esta brecha eleva el riesgo de retrasos, envíos poco convenientes y reacción tardía ante falta de stock.
+
+\subsection{Solución propuesta y alcance inicial}
+Proponemos la Plataforma de Datos RetailSmart como soporte de Lumina Retail. Combina eventos operativos y cargas históricas, conserva datos originales y prepara información para alertas, planificación de inventario, control operativo y mantenimiento. Esta propuesta define la arquitectura objetivo, los flujos de integración, el gobierno de datos, los controles de resiliencia y una hoja de ruta para validar progresivamente los productos de información.
+
+\subsection{Beneficios esperados y decisiones de arquitectura}
+El beneficio depende de enlazar información, decisión y actuación. Una alerta de bajo stock permite revisar reposición o un origen alternativo; una señal logística permite ajustar prioridades. Se propone comenzar con un piloto delimitado antes de extender capacidades y medir su impacto operativo.
+
+Las decisiones principales son integrar mediante claves gobernadas, combinar batch y streaming según la oportunidad requerida, separar Bronze, Silver y Gold, preservar responsabilidades del ERP y usar servicios gestionados de GCP con una excepción explícita frente a la preferencia por código abierto. El avance debe condicionarse a datos conciliados y responsables de actuación.
+
+\clearpage
+% ================================================================
+\Seccion{Contexto empresarial y diagnóstico}\label{sec:contexto}
+\subsection{RetailSmart Global y la iniciativa Lumina Retail}
+El contexto de negocio de RetailSmart comprende más de nueve millones de clientes activos, ocho regiones logísticas y doce unidades de negocio. La iniciativa Unifica-Retail establece Lumina Retail para aprovechar conjuntamente canales, inventario y activos de distribución. Conviven compras físicas que requieren asistencia y compras móviles que demandan rapidez; ambas necesitan información de disponibilidad confiable.
+
+\subsection{Operación actual y proceso de extremo a extremo}
+El proceso comprende captura de demanda, validación de inventario, preparación y despacho y seguimiento operativo. Los canales, el sistema de pedidos, el ERP, almacenes y logística ejecutan esas actividades. La información parcial entre etapas y los reportes diferidos limitan la capacidad de anticipar un problema. La figura~\ref{fig:proceso-asis} ubica estas limitaciones en el recorrido del pedido.
+\begin{figure}[!htbp]
+\centering\includegraphics[width=\linewidth]{proceso_asis.png}
+\caption[Atención de pedidos en la situación actual]{Atención de pedidos en la situación actual.}\label{fig:proceso-asis}
+\Fuente{arquitectura de referencia de RetailSmart}
+\end{figure}
+
+\subsection{Fragmentación de inventarios, silos y congestión logística}
+La dispersión de inventario dificulta elegir el origen de atención y puede aumentar el uso de envíos de última milla. Los silos impiden consolidar indicadores y la congestión durante Black Friday retrasa preparación y despacho. La plataforma debe reducir la demora informativa que agrava esas situaciones; no puede corregir por sí sola una falta física de stock o de capacidad de transporte.
+
+\subsection{Relación entre problemas, causas e impactos}
+\begin{table}[H]
+\caption{Diagnóstico y respuesta propuesta}\label{tab:diagnostico}
+\small\begin{tabularx}{\linewidth}{@{}YYY@{}}\toprule
+Problema y causa & Impacto operativo & Respuesta de la solución\\\midrule
+Inventario disperso y datos vencidos & Riesgo de decidir desde un origen poco conveniente & Disponibilidad por SKU y ubicación con vigencia visible.\\
+Información aislada entre canales y unidades & Consolidación manual y criterios inconsistentes & Datos curados y definiciones comunes de indicadores.\\
+Congestión y seguimiento diferido & Menor oportunidad para corregir una demora & Señales de saturación y seguimiento del envío.\\
+Telemetría sin análisis integrado & Detección tardía de condiciones anómalas & Alertas por activo y evidencia de la medición.\\\bottomrule
+\end{tabularx}
+\end{table}
+La frecuencia y el impacto de las incidencias se medirán como línea base. El diagnóstico identifica mecanismos de impacto, sin atribuir a la plataforma mejoras todavía no observadas.
+
+% ================================================================
+\Seccion{Objetivos, alcance y criterios de éxito}\label{sec:objetivos}
+\subsection{Objetivo general y objetivos específicos}
+El objetivo general es mejorar las decisiones de atención de pedidos integrando demanda, disponibilidad y ejecución logística. Los objetivos específicos son disponer de información vigente por entidad, generar señales explicables, preparar históricos consistentes y comprobar la contribución de las actuaciones sobre el nivel de servicio. El éxito requiere una secuencia completa desde el dato hasta la decisión, no solamente un conteo de mensajes procesados.
+
+\subsection{Verticales y decisiones de negocio}
+\begin{table}[H]
+\caption{Correspondencia entre problema, capacidad, resultado e indicador}\label{tab:kpi}
+\small\begin{tabularx}{\linewidth}{@{}P{.12\linewidth}YYY@{}}\toprule
+Vertical & Problema y capacidad & Resultado esperado & Indicador propuesto\\\midrule
+V1 Tiempo real & Baja visibilidad; alertas y disponibilidad & Detectar antes riesgo de quiebre o saturación & Latencia evento a alerta p95 $\leq60$ s en carga nominal.\\
+V2 Inventario diario & Planificación fragmentada; consolidación y pronóstico & Plan por producto y ubicación & Plan antes de las 07:00 de Lima; error frente a baseline simple.\\
+V3 Control operativo & Indicadores dispersos; información conciliada & Comparar nivel de servicio y desempeño por pedido & Diferencias no explicadas en totales y tiempos de atención.\\
+V4 Mantenimiento & Reacción tardía; análisis de condición & Priorizar revisión de activos & Tiempo de detección y precisión con fallas etiquetadas.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Requisitos funcionales y atributos de calidad}
+La solución debe integrar eventos e históricos, relacionar entidades, conservar originales, generar señales y exponer resultados. Debe además permitir reproceso, controlar accesos y mostrar vigencia. Como atributos de calidad se priorizan oportunidad, consistencia, recuperabilidad, escalabilidad y trazabilidad. La aplicación operativa confirma disponibilidad y ejecuta reservas; la plataforma analítica no autoriza por sí sola una venta.
+
+\subsection{Indicadores y método de medición}
+El p95 es el tiempo dentro del cual se completa el 95\,\% de los casos medidos. Se medirá por intervalos de carga y por tipo de evento, sin ocultar errores o datos tardíos. Los totales se conciliarán a igual granularidad y las señales conservarán entidad, momento y causa. El beneficio se estimará comparando períodos o grupos equivalentes y registrando la actuación; la detección técnica no equivale automáticamente a una incidencia evitada.
+
+\subsection{Supuestos, restricciones, dependencias y exclusiones}
+Se asumen fuentes accesibles, correspondencias válidas de SKU y ubicación y responsables capaces de actuar. Se mantiene la estrategia híbrida con predominio sintético para validación y al menos un dataset público de referencia. Se excluyen del diseño detallado inicial la sustitución del ERP, la ejecución de pagos o despachos y un despliegue productivo multirregión. Las metas y retenciones se ajustarán con datos medidos. La propiedad de los datos permanece en RetailSmart.
+
+% ================================================================
+\Seccion{Estrategia de datos y escenarios de negocio}\label{sec:datos}
+\subsection{Inventario y clasificación de fuentes}
+La operación objetivo integra fuentes propias de aplicaciones de canal, pedidos y ERP; sensores de tienda y almacén; GPS de reparto y telemetría de refrigeración. Cada registro debe conservar fuente, tiempo y entidad. Los datos de interacción explican cambios recientes de demanda; pedidos e inventario sustentan planificación y conciliación; logística y telemetría permiten reconocer desvíos de ejecución o condición.
+
+\subsection{Evaluación de datasets públicos de referencia}
+\begin{table}[H]
+\caption{Utilidad y límites de los datasets públicos}\label{tab:datasets}
+\small\begin{tabularx}{\linewidth}{@{}P{.20\linewidth}YY@{}}\toprule
+Dataset & Aplicación de referencia & Límite de interpretación\\\midrule
+Olist & Pedidos y contexto logístico; candidato para análisis de entregas y flete & Sus clientes y productos no equivalen a los de otras fuentes.\\
+UCI Online Retail & Transacciones por producto y fecha para patrones de compra & No representa GPS, sensores ni condición de activos.\\
+theLook eCommerce & Estructura de comercio electrónico disponible en BigQuery & Es público y sintético; no es observación real de RetailSmart.\\\bottomrule
+\end{tabularx}
+\end{table}
+La evaluación identifica dónde aporta cada conjunto; no demuestra representatividad del negocio. El origen sintético de theLook está documentado por Google. UCI describe transacciones de un comercio británico y Olist publica su conjunto en Kaggle~\cite{thelook,uci,olist}.
+
+\subsection{Estrategia híbrida con predominio sintético}
+La validación usará escenarios reproducibles para controlar tasas, anomalías y relaciones entre entidades. Un histórico público aportará estructura y una referencia transaccional; Olist es un candidato para el escenario logístico y UCI para ventas. En producción, estos conjuntos se sustituyen por fuentes empresariales. El histórico público y el generador no se presentarán como datos reales de los clientes de RetailSmart.
+
+\subsection{Correspondencia entre fuentes, entidades y verticales}
+Las entidades principales son producto, ubicación, pedido, envío, activo y tiempo. SKU y ubicación relacionan disponibilidad con demanda; pedido o envío relaciona transacciones con tracking; activo y ubicación vinculan telemetría con operación. La matriz del anexo~\ref{anexo:matriz} detalla esta correspondencia. Una fuente puede servir a varias verticales sin duplicar su definición ni atribuirle cobertura que no posee.
+
+\subsection{Escenarios controlados}
+\begin{table}[H]
+\caption{Escenarios de validación y respuesta esperada}\label{tab:escenarios}
+\small\begin{tabularx}{\linewidth}{@{}P{.21\linewidth}YY@{}}\toprule
+Escenario & Condición controlada & Comprobación\\\midrule
+Operación normal & Stock y condiciones estables & Flujo conciliado y ausencia de alertas injustificadas.\\
+Alta demanda & Mayor tasa de clics y descenso de stock correlacionado & Señal oportuna y backlog que se recupera.\\
+Anomalía de activo & Temperatura que supera un umbral configurable & Activo, evidencia y responsable de revisión identificados.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Claves y reglas de correspondencia}
+Los datasets se conservan independientes. No se unen clientes o productos por coincidencia de identificador, descripción o importe. El generador puede tomar un catálogo seleccionado y registrar un mapa versionado hacia los SKU del escenario. Un registro sin equivalencia sustentada se mantiene separado y se marca como tal. Antes de cruzar varias observaciones con una venta se agrega a una granularidad compatible para evitar multiplicar importes.
+
+% ================================================================
+\Seccion{Arquitectura de solución de extremo a extremo}\label{sec:arquitectura}
+\subsection{Principios y decisiones de diseño}
+El diseño preserva la autoridad de los sistemas operativos, desacopla publicación y consumo, conserva evidencia de origen y separa calidad de datos de su uso. El cómputo continuo se reserva a decisiones cuya utilidad disminuye con la demora. El procesamiento batch consolida históricos y planes. Las responsabilidades lógicas no obligan a crear un servicio o job independiente por cada caja del diagrama.
+
+\subsection{Vista de negocio y relación con las verticales}
+La atención inteligente de pedidos incorpora captura e integración de demanda, evaluación de disponibilidad, decisión operativa y mejora continua. Las alertas de V1 apoyan reacción; V2 prepara decisiones diarias; V3 permite comparar nivel de servicio y desempeño; V4 protege la capacidad operativa. La figura~\ref{fig:proceso-tobe} vincula estas capacidades con el recorrido del pedido.
+\begin{figure}[!htbp]
+\centering\includegraphics[width=\linewidth]{proceso_tobe.png}
+\caption[Atención inteligente de pedidos propuesta]{Atención inteligente de pedidos propuesta.}\label{fig:proceso-tobe}
+\Fuente{arquitectura de referencia de RetailSmart}
+\end{figure}
+
+\subsection{Vista de aplicaciones y servicios de datos}
+Canales, pedidos, ERP, almacenes y logística conservan sus funciones. La plataforma recibe información y entrega señales, planes e indicadores. Los consumidores deben conocer vigencia y calidad antes de actuar. Las consultas o APIs posteriores exponen productos de información; una reserva, un pago o un cambio de despacho sigue requiriendo validación transaccional. Las vistas completas de aplicaciones frente a procesos se incluyen en el anexo~\ref{anexo:vistas}.
+
+\subsection{Vista tecnológica y correspondencia con GCP}
+\begin{table}[H]
+\caption{Correspondencia entre componentes lógicos y servicios}\label{tab:componentes}
+\small\begin{tabularx}{\linewidth}{@{}P{.32\linewidth}YY@{}}\toprule
+Componente de arquitectura & Materialización prevista & Responsabilidad\\\midrule
+Tópico Eventos Retail & Pub/Sub & Desacoplar productores de consumidores.\\
+Procesamiento Streaming & Apache Beam en Dataflow & Validar, normalizar y evaluar reglas o ventanas.\\
+Bronze Eventos Raw & Cloud Storage & Conservar payload y origen.\\
+Silver Eventos Curados & Cloud Storage y Parquet & Mantener datos integrables y controlados.\\
+Tópico Insights Retail & Pub/Sub & Distribuir señales de negocio.\\
+Gold Insights Retail & BigQuery & Preparar resultados de consulta y exposición.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Recorrido por ingesta, procesamiento, almacenamiento y exposición}
+La figura~\ref{fig:arquitectura-vector} resume el flujo sin sustituir el detalle de ArchiMate. La persistencia raw y la evaluación de señales pueden avanzar en paralelo, coordinadas por identidad y conciliación. No es necesario leer un archivo Bronze para producir cada alerta. La exposición integra resultados mediante consultas y servicios de datos.
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\footnotesize,
+ caja/.style={draw=black!65,line width=.5pt,rounded corners=1.5pt,align=center,text width=3.4cm,minimum height=1.1cm,inner sep=4pt},
+ dato/.style={caja,fill=black!3},linea/.style={->,draw=black!70,line width=.6pt}]
+\node[caja] (eventos) at (0,0) {\textbf{Eventos operativos}\\Canal, IoT, stock,\\GPS y telemetría};
+\node[caja] (topic) at (4.7,0) {\textbf{Tópico Eventos\\Retail}\\Pub/Sub};
+\node[caja] (stream) at (9.4,0) {\textbf{Procesamiento\\Streaming}\\Beam en Dataflow};
+\node[caja] (hist) at (0,-2.4) {\textbf{Históricos y catálogos}\\Pedidos, inventario\\y fuentes batch};
+\node[dato] (bronze) at (4.7,-2.4) {\textbf{Bronze Eventos Raw}\\Originales y origen};
+\node[dato] (silver) at (9.4,-2.4) {\textbf{Silver Eventos\\Curados}\\Claves y calidad};
+\node[dato] (gold) at (4.7,-4.8) {\textbf{Gold Insights Retail}\\Indicadores y planes};
+\node[caja] (insights) at (9.4,-4.8) {\textbf{Tópico Insights\\Retail}\\Señales de negocio};
+\node[caja,text width=11.5cm,minimum height=.85cm] (consumo) at (4.7,-6.8) {\textbf{Aplicaciones y equipos consumidores}\\Operaciones, planificación, logística, mantenimiento y BI};
+\draw[linea] (eventos)--(topic);
+\draw[linea] (topic)--(stream);
+\draw[linea] (stream.east) -- ++(.65,0) |- (insights.east);
+\draw[linea] (hist)--(bronze);
+\draw[linea] (stream.south west)--(bronze.north east);
+\draw[linea] (stream)--(silver);
+\draw[linea] (bronze)--(silver);
+\draw[linea] (silver.south west)--(gold.north east);
+\draw[linea] (insights)--(gold);
+\draw[linea] (gold)--(consumo);
+\end{tikzpicture}
+\caption[Síntesis vectorial de la arquitectura de datos]{Síntesis vectorial de la arquitectura de datos. Las flechas expresan flujos lógicos de captura, curación, análisis y exposición.}\label{fig:arquitectura-vector}
+\Fuente{elaboración a partir de la arquitectura de referencia de RetailSmart}
+\end{figure}
+
+\subsection{Trazabilidad entre elementos, componentes y requisitos}
+La trazabilidad sigue la secuencia problema, capacidad, componente, dato y validación. Por ejemplo, baja visibilidad de stock se vincula a disponibilidad por SKU y ubicación, a ingesta de \ID{stock\_event}, a curación y a una señal verificable. El catálogo de recursos preserva el identificador lógico y el nombre físico. Las matrices anexas permiten seguir la relación entre fuentes, componentes y resultados.
+
+% ================================================================
+\Seccion{Diseño detallado de ingesta e integración}\label{sec:ingesta}
+\subsection{Criterios para seleccionar batch o streaming}
+Streaming se usa cuando la demora cambia la decisión, como riesgo de quiebre o condición de un activo. Batch se usa para consolidación, reconciliación y planes diarios. La selección considera frecuencia del origen, granularidad y tiempo útil del resultado. Se evita exigir baja latencia a una fuente que solo dispone de una actualización diaria.
+
+\subsection{Flujo streaming y contratos de eventos}
+Los productores publicarán los seis tipos definidos por la arquitectura en el Tópico Eventos Retail. La validación y normalización producirán datos curados y las reglas generarán señales hacia el Tópico Insights Retail y Gold. Un contrato debe identificar entidad, origen, versión y tiempo. El perfil semántico del anexo es ilustrativo; no modifica los contratos vigentes del repositorio.
+\begin{table}[H]
+\caption{Eventos de entrada y uso principal}\label{tab:eventos}
+\small\begin{tabularx}{\linewidth}{@{}P{.34\linewidth}YY@{}}\toprule
+Evento & Fuente & Uso principal\\\midrule
+\path{clic_event} & Canal digital & Cambios de interés e interacción.\\
+\path{iot_event} & Sensores de tienda & Condiciones de operación.\\
+\path{stock_event} & Inventario instrumentado & Disponibilidad por SKU y ubicación.\\
+\path{location_event} & GPS & Posición y avance del envío.\\
+\path{telemetry_event} & Refrigeración & Condición de activos.\\
+\path{warehouse_sensor_event} & Almacén & Condiciones y riesgo operativo.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Flujo batch y fuentes históricas}
+Las cargas de pedidos, inventario y catálogo conservarán un identificador de lote, fuente, fecha y totales. Bronze recibe el archivo o extracción original; la transformación valida y consolida Silver; las agregaciones y estructuras analíticas preparan Gold. La disponibilidad del plan diario se coordinará con la ventana de llegada del origen. Una carga incompleta no se publica como período cerrado.
+
+\subsection{Validación, metadatos y versionamiento de esquemas}
+Se comprueban campos obligatorios, tipos, rangos, unidades y claves de referencia. El payload original y el motivo de incumplimiento permiten investigar. La compatibilidad de un nuevo esquema se revisa antes de cambiar productores o consumidores. Se registran tiempo de ocurrencia y tiempo de ingesta para medir oportunidad sin confundir retraso del origen con demora del pipeline.
+
+\subsection{Duplicados, eventos tardíos, errores y reprocesamiento}
+El identificador estable del evento y las escrituras idempotentes evitan efectos equivalentes repetidos. Se evaluarán ventanas de 30 segundos y una tolerancia inicial de dos minutos; las cifras permanecen configurables. La secuencia de origen o la vigencia impiden que un stock atrasado sustituya un estado más reciente. Dataflow no garantiza una única llamada externa aunque controle resultados dentro del procesamiento~\cite{exactlyonce}. Los inválidos se separan en una ruta controlada, sin añadir tipos de evento.
+
+\subsection{Frecuencias, latencias y volúmenes estimados}
+Se propone una prueba nominal de \TasaNormal{} eventos/s de \TamEventoKiB{} KiB y un pico de \TasaPico{} eventos/s durante dos horas al día por tres días. La meta inicial es p95 de alerta no mayor a un minuto bajo carga nominal y plan diario antes de las 07:00 de Lima. El intervalo de archivo, el tamaño de lote y la frecuencia de extracción se ajustarán con mediciones; el número de clientes no determina por sí solo la tasa de eventos.
+
+% ================================================================
+\Seccion{Diseño de almacenamiento y organización de datos}\label{sec:almacenamiento}
+\subsection{Justificación de los motores de almacenamiento}
+La propuesta combina un Data Lake de archivos con un Data Warehouse analítico. Cloud Storage conserva originales y Parquet curado; BigQuery organiza consultas y productos de consumo. Esta separación permite reprocesar sin reconstruir el origen y optimizar consultas sin trasladar toda la operación a un motor transaccional. Las capas Medallion por sí solas no constituyen un lakehouse transaccional.
+
+\subsection{Responsabilidad de Bronze, Silver y Gold}
+\begin{table}[H]
+\caption{Responsabilidades de las capas de datos}\label{tab:medallion}
+\small\begin{tabularx}{\linewidth}{@{}P{.14\linewidth}YY@{}}\toprule
+Capa & Contenido & Condición de publicación\\\midrule
+Bronze & Payloads y archivos originales con origen & Recepción identificada y evidencia recuperable.\\
+Silver & Datos normalizados con claves y unidades consistentes & Reglas de calidad y correspondencia conocidas.\\
+Gold & Señales, planes e indicadores por granularidad de negocio & Definición del indicador, vigencia y permisos de consumo.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Formatos, particionamiento y organización física}
+Bronze conserva JSON y formatos originales. Silver usa Parquet para lectura selectiva y compresión; se organiza por fuente, tipo y fecha del evento. Gold particiona por fecha del negocio y agrupa por claves utilizadas en consultas. Se propone compactar archivos para evitar objetos pequeños y separar temporales técnicos. Región de cómputo y ubicaciones de datos deben ser compatibles.
+
+\subsection{Retención y ciclo de vida}
+Se proponen 30 días en Bronze, 90 días en Silver y 12 meses de resultados Gold para el piloto. Las retenciones deberán validarse según auditoría y recuperación. Bronze será de escritura añadida a nivel lógico; la inmutabilidad exige permisos y política de conservación. La retención no debe impedir el cumplimiento de las políticas de eliminación y privacidad. El archivo histórico de largo plazo se decidirá con una necesidad explícita.
+
+\subsection{Modelo conceptual y estructuras para consumo}
+Las entidades son producto, ubicación, pedido, envío, activo y fecha. Los hechos de pedido y entrega se relacionan con dimensiones compartidas; señales y telemetría conservan su propia granularidad. Los productos Gold comprenden disponibilidad y alertas por entidad, plan diario de inventario, indicadores operativos y condición de activos. Cada producto registra fecha de actualización y cobertura de datos.
+
+\subsection{Integración del histórico con eventos operativos}
+Los eventos enriquecen la visión reciente y el histórico permite contexto y conciliación. La unión se realiza sobre claves válidas y una referencia temporal compatible. Antes de cruzar varios eventos con una transacción se agrega al nivel de la venta. La conversión exige una relación sustentada entre interacción y compra; en ausencia de esa relación se muestran ambas métricas por separado.
+
+% ================================================================
+\Seccion{Selección y justificación tecnológica}\label{sec:tecnologia}
+\subsection{Criterios y alternativas consideradas}
+La comparación considera oportunidad de la decisión, esfuerzo de operación, portabilidad, seguridad y mantenibilidad. Se evalúa una base gestionada en GCP frente a una plataforma autogestionada con componentes abiertos. La primera reduce tareas de operación, mientras la segunda ofrece mayor control a cambio de desplegar, actualizar, dimensionar y recuperar más infraestructura. Ninguna alternativa elimina la necesidad de gobierno o soporte.
+\begin{table}[H]
+\caption{Alternativas tecnológicas y compromisos}\label{tab:alternativas}
+\small\begin{tabularx}{\linewidth}{@{}P{.21\linewidth}YY@{}}\toprule
+Decisión & Opción del diseño & Alternativa y compromiso\\\midrule
+Mensajería & Pub/Sub; desacoplamiento sin administrar brokers & Kafka; mayor control y portabilidad del protocolo, con operación propia o capacidad gestionada.\\
+Streaming & Apache Beam en Dataflow & Otro runner o Flink; revisar conectores, estado y semántica de recuperación.\\
+Archivos & Cloud Storage con formatos abiertos & Almacenamiento compatible con objetos; revisar garantías y operación.\\
+Analítica & BigQuery para Gold y consultas SQL & Motor abierto como Trino; requiere organizar capacidad y operación.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Sustento de los componentes seleccionados}
+Pub/Sub permite desacoplar productores y consumidores; Beam expresa transformaciones y ventanas; Dataflow ejecuta el procesamiento gestionado; Cloud Storage conserva archivos y BigQuery organiza consultas. La decisión distribuye responsabilidades por capa y evita usar un almacén analítico para coordinar transacciones. El motor batch definitivo se ajustará al volumen; no se despliega un clúster permanente sin una carga que lo justifique~\cite{pubsub,beam}.
+
+\subsection{Tecnologías abiertas y servicios administrados de GCP}
+RetailSmart ha expresado una preferencia por tecnologías abiertas. Python, Beam, Parquet y lógica SQL portable atienden parte de ese objetivo. Pub/Sub, Dataflow, Cloud Storage y BigQuery son servicios propietarios; usar clientes abiertos no los convierte en software abierto. Por ello, la arquitectura gestionada requiere una decisión explícita sobre la dependencia de plataforma. Si la prioridad es evitar dependencia de proveedor, se deberá comparar una alternativa abierta antes de consolidar la implementación.
+
+\subsection{Compromisos de portabilidad, rendimiento y operación}
+Se acepta dependencia de servicio a cambio de reducir operación inicial. La salida se facilita con formatos abiertos, metadatos exportables, lógica separada de conectores y contratos versionados, sin prometer migración automática. Se revisará el enfoque si las restricciones de residencia o la política de software superan el beneficio de la gestión delegada. Los modelos predictivos se incorporan solo si superan un baseline simple y justifican su mantenimiento.
+
+\subsection{Registro de decisiones de arquitectura}
+\begin{table}[H]
+\caption{Decisiones y condiciones de aceptación}\label{tab:adr}
+\small\begin{tabularx}{\linewidth}{@{}P{.12\linewidth}YY@{}}\toprule
+ID & Decisión de diseño & Consecuencia o condición\\\midrule
+ADR 01 & Integración híbrida y escenarios sintéticos controlados & Se complementa con un histórico público; el impacto real exige piloto operativo.\\
+ADR 02 & Bronze y Silver en objetos; Gold analítico & Separar evidencia de preparación y consumo.\\
+ADR 03 & Identidad estable e idempotencia & Reproceso sin duplicar efectos de negocio.\\
+ADR 04 & Despliegue regional inicial & La recuperación ante pérdida de región requiere una copia externa y un procedimiento probado.\\
+ADR 05 & Uso de servicios GCP gestionados & Excepción pendiente frente al mandato de código abierto.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+% ================================================================
+\Seccion{Escalabilidad y rendimiento}\label{sec:escala}
+\subsection{Volumetría y carga normal}
+El escenario de referencia utiliza 20 eventos/s de \TamEventoKiB{} KiB durante 30 días. Esto equivale a 51,84 millones de eventos y aproximadamente 74,2 GiB de payload raw mensual. Son parámetros de un piloto acotado, no una extrapolación desde nueve millones de clientes. El número de workers es una hipótesis de capacidad que debe validarse.
+
+\subsection{Black Friday y Cyber Monday}
+Se propone aumentar a 400 eventos/s durante dos horas al día por tres días, manteniendo igual tamaño medio. El mes resultante contiene aproximadamente 60,05 millones de eventos. La prueba observa aumento de demanda, descenso correlacionado de stock y acumulación logística. Además de la latencia durante el pico, se mide cuánto tarda en vaciarse el trabajo pendiente una vez que la tasa retorna a normalidad.
+
+\subsection{Capacidad y escalamiento por capa}
+\begin{table}[H]
+\caption{Controles de capacidad por capa}\label{tab:capacidad}
+\small\begin{tabularx}{\linewidth}{@{}P{.20\linewidth}YY@{}}\toprule
+Capa & Señal a observar & Acción a evaluar\\\midrule
+Productores y captura & Errores de publicación, cuota y reintentos & Regular tasa y tamaño de lote; evitar pérdida silenciosa.\\
+Streaming & Backlog, p95, CPU y claves calientes & Revisar paralelismo, ventanas y límites de workers.\\
+Archivos & Archivos pequeños y demora de escritura & Ajustar tamaño y frecuencia de consolidación.\\
+Gold y consultas & Demora y bytes escaneados & Particionar, seleccionar columnas y preparar agregados.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Cuellos de botella y saturación}
+Un backlog creciente puede originarse en claves concentradas, un destino lento, cuotas o lógica de procesamiento intensiva. Añadir workers no resuelve necesariamente el límite del destino. Se revisará el tramo que acumula trabajo antes de incrementar capacidad. La retención protege una ventana de recuperación, pero no representa almacenamiento ilimitado. Batch y consultas masivas se programarán para no competir innecesariamente con decisiones urgentes.
+
+\subsection{Objetivos y pruebas de rendimiento}
+La meta nominal de alerta es p95 $\leq60$ s, acompañada de conciliación y registro de errores. Para el pico se verificará crecimiento y recuperación del backlog sin pérdida no explicada; el umbral de latencia de campaña se acordará con la necesidad operativa. El escenario de prueba contempla dos workers de 2 vCPU y 8 GiB y hasta ocho durante seis horas de pico. Esta capacidad debe confirmarse experimentalmente.
+
+% ================================================================
+\Seccion{Fiabilidad, alta disponibilidad y recuperación}\label{sec:resiliencia}
+\subsection{Escenarios de falla y consecuencias operativas}
+La solución debe reconocer fuentes caídas, fallas de procesamiento, datos inválidos y pérdida regional. El riesgo principal es que una información incompleta o vencida se consuma como disponibilidad vigente. La respuesta combina marcar degradación, conservar evidencia, controlar salidas y recuperar procesamiento. Alta disponibilidad local y recuperación ante desastre regional son responsabilidades relacionadas, pero distintas.
+
+Como criterio de alta disponibilidad, se evita introducir coordinadores autogestionados de instancia única. Se debe comprobar la cobertura zonal de los servicios elegidos y ensayar el reinicio de workers sin pérdida no explicada. La continuidad ante pérdida completa de región requiere un diseño adicional de recuperación.
+
+\subsection{Indisponibilidad del inventario de una tienda}
+Se mantiene la última lectura como referencia y se marca su vigencia. Operaciones debe saber que la fuente está degradada antes de confirmar un compromiso. La venta se valida en el sistema transaccional o mediante una alternativa operativa autorizada. Un heartbeat o una regla de frescura permite proponer detección de indisponibilidad en cinco minutos o menos, pendiente de prueba.
+
+\subsection{Tolerancia a fallos y recuperación del procesamiento}
+Los mensajes retenidos, los originales y los puntos persistidos permiten retomar el flujo. Se recupera configuración y permisos y se reprocesa con la misma identidad lógica. La conciliación debe comparar entradas, duplicados, rechazados y resultados. Los consumidores de señales también deben controlar repetición; la garantía interna del runner no basta para una acción externa exactamente una vez~\cite{exactlyonce}.
+
+\subsection{Objetivos RTO y RPO propuestos}
+\begin{table}[H]
+\caption{Objetivos iniciales de recuperación}\label{tab:rto}
+\small\begin{tabularx}{\linewidth}{@{}P{.27\linewidth}YY@{}}\toprule
+Incidente & Objetivo propuesto & Condición y evidencia\\\midrule
+Fuente de inventario caída & Detección $\leq5$ min & Regla de frescura y visibilidad de estado degradado.\\
+Job o worker indisponible & RTO $\leq30$ min & Recuperar desde datos ya persistidos y retenidos.\\
+Pérdida de región & RTO 4 h y RPO 24 h & Solo tras habilitar y probar una copia fuera de la región.\\\bottomrule
+\end{tabularx}
+\end{table}
+RTO es el tiempo objetivo de recuperación y RPO la pérdida máxima tolerada. Los valores son decisiones propuestas; no son SLA de GCP ni resultados medidos. El despliegue regional inicial no demuestra por sí solo continuidad multirregión.
+
+\subsection{DRP y procedimiento de validación}
+El procedimiento identifica el incidente, contiene resultados incorrectos, restaura configuración y acceso, recupera datos y concilia antes de reabrir consumo. El simulacro registra tiempos y diferencias y permite ajustar objetivos. La copia externa a la región deberá habilitarse y probarse según la criticidad del servicio.
+
+% ================================================================
+\Seccion{Gobierno, calidad y seguridad de datos}\label{sec:gobierno}
+\subsection{Responsables y clasificación}
+RetailSmart conserva la propiedad del dato. Cada dominio debe designar un responsable de definición y calidad y cada producto de información un responsable de consumo. Se propone clasificar los conjuntos según sensibilidad y necesidad operativa, minimizando datos personales. El contrato con el proveedor debe proteger acceso, exportación y continuidad, y dejar clara la titularidad de los datos y de la tecnología.
+
+\subsection{Catálogo, diccionario y metadatos}
+El catálogo documenta propósito, fuente, owner o responsable, granularidad, esquema, versión, calidad y consumidores. El diccionario define el significado de campos, unidades y claves. Los metadatos de recepción no sustituyen el tiempo del negocio. En esta fase se propone un catálogo versionado y metadatos obligatorios; la implantación completa de una herramienta gestionada de catálogo se incorpora cuando el alcance lo justifique.
+
+\subsection{Linaje desde la fuente hasta el consumo}
+Un indicador o una señal debe poder rastrearse hasta su evento o lote, la transformación aplicada y la versión de regla o modelo. Se conserva la correspondencia entre fuente y entidad del escenario. El linaje lógico se diseña desde el inicio y la evidencia automática se incorpora con los pipelines. Una flecha en el diagrama expresa una relación prevista, no prueba que el linaje técnico ya esté implementado.
+
+\subsection{Reglas de calidad e incumplimientos}
+Las reglas cubren completitud, tipo, rango, unidad, unicidad, frescura y referencia válida. Se concilian entradas con válidos, duplicados y rechazados usando categorías excluyentes definidas para cada conteo. Un incumplimiento conserva causa y origen y puede impedir publicar un período o activar una señal. Los umbrales se acuerdan con el uso del dato y se revisan con los usuarios.
+
+\subsection{Identidades, permisos y mínimo privilegio}
+\begin{table}[H]
+\caption{Separación funcional de accesos}\label{tab:iam}
+\small\begin{tabularx}{\linewidth}{@{}P{.24\linewidth}YY@{}}\toprule
+Identidad & Acceso necesario & Límite\\\midrule
+Aprovisionamiento & Crear y configurar recursos catalogados & No utilizarla como identidad de los jobs.\\
+Ejecución Dataflow & Leer entradas y escribir en destinos de su función & Evitar permisos globales de Editor o administración total.\\
+Consumo & Consultar productos autorizados & No otorgar acceso general a Bronze o información sensible.\\\bottomrule
+\end{tabularx}
+\end{table}
+Los permisos concretos se asignan al recurso y a la operación necesaria y se verifican mediante pruebas positivas y negativas. La propagación y los agentes gestionados se revisarán durante el bootstrap sin confundirlos con las cuentas de ejecución.
+
+\subsection{Cifrado y protección de datos sensibles}
+Se propone cifrado gestionado inicialmente, ausencia de acceso público y separación de secretos y código. Se evita PII real en pruebas. Cuando una finalidad requiera identificar personas, se define acceso y se considera enmascaramiento o tokenización; Gold publica solo lo necesario. El cifrado no sustituye mínimo privilegio, minimización ni revisión de campos expuestos.
+
+\subsection{Auditoría y trazabilidad}
+Los logs deben identificar proceso, ejecución, causa de error y entidad técnica sin volcar payload sensible. Las métricas cubren frescura, errores, backlog y oportunidad. La cobertura de auditoría de acceso a datos debe verificarse y habilitarse; la existencia de logs operativos no demuestra auditoría completa. Los cambios relevantes de esquema, permisos y reglas quedan versionados.
+
+\subsection{Nomenclatura y catálogo de recursos}
+Se separa el identificador lógico del nombre físico. El catálogo precede al despliegue y mantiene componente, servicio, entorno, alcance, ubicación, propósito, capa y estado. Los labels facilitan identificar responsables y recursos. Bronze, Silver y Gold pertenecen al atributo de capa; ingesta o seguridad pertenecen al rol. Pub/Sub tiene alcance global y la residencia del mensaje se configura aparte. El anexo~\ref{anexo:catalogo} muestra un inventario lógico de referencia.
+
+% ================================================================
+\Seccion{Plan de implementación y validación}\label{sec:plan}
+\subsection{Fase 1: habilitar el flujo prioritario}
+Seleccionar una combinación acotada de pedidos e inventario, confirmar responsables de datos y acordar las claves maestras. Habilitar la captura, persistencia de originales y validaciones iniciales. El resultado esperado es una vista vigente de disponibilidad por SKU y ubicación, con estado de calidad visible.
+
+\subsection{Fase 2: integrar históricos y productos de información}
+Incorporar cargas históricas, normalizar entidades y publicar productos Gold para planificación e indicadores operativos. Conciliar los resultados con las fuentes autorizadas y documentar excepciones. Los escenarios sintéticos y los conjuntos públicos sirven para validar el comportamiento, no para representar resultados reales de RetailSmart.
+
+\subsection{Fase 3: activar consumo operacional}
+Exponer señales y productos a los equipos de operaciones, planificación y logística mediante consultas, paneles o APIs. Probar el recorrido desde la fuente hasta una decisión registrada. Mantener las acciones transaccionales —reservas, pagos y despachos— en los sistemas operativos.
+
+\subsection{Dependencias y criterios de avance}
+\begin{table}[H]
+\caption{Condiciones de avance por fase}\label{tab:hitos}
+\small\begin{tabularx}{\linewidth}{@{}P{.20\linewidth}YY@{}}\toprule
+Fase & Resultado esperado & Condición para avanzar\\\midrule
+Flujo prioritario & Disponibilidad validada por SKU y ubicación & Fuentes accesibles, responsables definidos y conciliación explicable.\\
+Integración analítica & Históricos y productos de información & Calidad, claves y cobertura aceptadas por los responsables de negocio.\\
+Consumo operacional & Señales utilizadas en una decisión & Vigencia visible, usuario responsable y actuación registrada.\\\bottomrule
+\end{tabularx}
+\end{table}
+La secuencia técnica parte de configuración, identidades, tópicos, almacenamiento y validación reproducible. Después incorpora eventos, transformaciones y consumo. Se requiere resolver el acceso a las fuentes, las equivalencias, la responsabilidad operativa y la decisión sobre servicios administrados antes de ampliar el alcance.
+
+\subsection{Experimentos contra el escenario base}
+\begin{table}[H]
+\caption{Experimentos y reglas para decidir}\label{tab:experimentos}
+\small\begin{tabularx}{\linewidth}{@{}YYY@{}}\toprule
+Experimento & Métrica & Criterio de decisión\\\midrule
+Bajo stock con y sin señal & Tiempo de detección y de actuación & Confirmar utilidad operativa, sin atribuir ejecución automática.\\
+Duplicados y datos tardíos & Conteos, orden lógico y salidas & No repetir efectos equivalentes; explicar descartes.\\
+Plan diario frente a regla simple & Error y tiempo de cálculo & Incorporar complejidad solo si aporta mejora consistente.\\
+Pico y caída de procesamiento & P95, backlog y recuperación & Cumplir objetivos acordados y conciliar datos recuperados.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\clearpage
+% ================================================================
+\Seccion{Conclusiones y próximos pasos}\label{sec:conclusiones}
+\subsection{Correspondencia entre solución y problemática}
+La propuesta integra la información que hoy se presenta fragmentada y la organiza para decisiones verificables. El enfoque híbrido atiende riesgos inmediatos sin exigir cómputo continuo a toda la analítica. La separación de capas conserva evidencia y prepara consumo, mientras los sistemas operativos mantienen responsabilidad de reservas, pagos y despacho. El valor se concreta cuando un responsable utiliza el resultado y su actuación mejora el servicio y la eficiencia operativa.
+
+\subsection{Decisiones adoptadas, riesgos y asuntos pendientes}
+Se mantienen integración por claves sustentadas, datos públicos independientes, escenarios sintéticos controlados y una base regional de GCP. Deben cerrarse la decisión sobre servicios administrados, el histórico inicial, sus correspondencias y la residencia definitiva. Latencias y recuperación requieren validación. El riesgo de adopción se reduce con una señal vigente, una cola de atención y registro de la decisión; una arquitectura funcional sin actuación no demuestra beneficio.
+
+\subsection{Prioridades para la siguiente etapa}
+La prioridad es completar un recorrido de inventario y pedidos antes de expandir usos. Se preparará infraestructura reproducible, se probará evento por evento y se incorporará el pipeline con conciliación. Luego se añadirán batch, estructuras de consumo y exposición. Se recomienda revisar resultados con operaciones y ajustar umbrales antes de automatizar actuaciones o incorporar modelos que aumenten la complejidad operativa.
+
+\FloatBarrier\clearpage
+\phantomsection\addcontentsline{toc}{section}{Fuentes técnicas y de datos}
+\begin{thebibliography}{99}
+\small
+\bibitem{pubsub} Google Cloud. \textit{What is Pub/Sub?} \url{https://docs.cloud.google.com/pubsub/docs/overview}.
+\bibitem{beam} Apache Software Foundation. \textit{Beam Programming Guide}. \url{https://beam.apache.org/documentation/programming-guide/}.
+\bibitem{exactlyonce} Google Cloud. \textit{Exactly-once in Dataflow}. \url{https://docs.cloud.google.com/dataflow/docs/concepts/exactly-once}.
+\bibitem{olist} Olist. \textit{Brazilian E-Commerce Public Dataset}. \url{https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce}.
+\bibitem{uci} Chen, D. (2015). \textit{Online Retail}. UCI Machine Learning Repository. DOI: 10.24432/C5BW33. \url{https://archive.ics.uci.edu/dataset/352/online+retail}.
+\bibitem{thelook} Google Cloud. \textit{BigQuery meets Google ADK and MCP}. Descripción del origen sintético de theLook. \url{https://cloud.google.com/blog/products/ai-machine-learning/bigquery-meets-google-adk-and-mcp}.
+\end{thebibliography}
+
+% ================================================================
+\clearpage\appendix
+\Seccion{Matriz de fuentes, verticales, componentes e indicadores}\label{anexo:matriz}
+\begin{table}[H]
+\caption{Trazabilidad de las fuentes al resultado}\label{tab:fuente-vertical}
+\small\begin{tabularx}{\linewidth}{@{}P{.23\linewidth}P{.12\linewidth}YY@{}}\toprule
+Fuente o evento & Vertical & Componentes principales & Indicador o comprobación\\\midrule
+Clics y pedidos & V1, V3 & Captura, curación y Gold & Demanda; conversión solo si existe atribución válida.\\
+Stock y catálogo & V1, V2 & Streaming, Silver y señales & Vigencia y oportunidad de riesgo de quiebre.\\
+Histórico de ventas & V2, V3 & Batch, Silver y Gold & Plan diario y conciliación.\\
+GPS y envíos & V1, V3 & Streaming y Gold & Avance y tiempo de entrega.\\
+Telemetría frigorífica & V4 & Streaming y señales & Detección de condición anómala.\\
+Sensores de\newline almacén & V4, V1 & Streaming y datos\newline curados & Condición y oportunidad de actuación.\\\bottomrule
+\end{tabularx}
+\end{table}
+\textbf{Regla de integración.} Toda correspondencia conserva fuente, identificador de origen, clave del escenario y versión del mapa. La ausencia de equivalencia es un resultado de calidad que debe permanecer visible.
+
+\clearpage
+\Seccion{Contratos de eventos y diccionario de datos}\label{anexo:contratos}
+\subsection{Perfil semántico mínimo propuesto}
+El cuadro define conceptos necesarios para validar la solución. Los nombres y tipos de los contratos vigentes del repositorio prevalecen. Este anexo no constituye una modificación de dichos contratos.
+\begin{table}[H]
+\caption{Diccionario semántico de trazabilidad}\label{tab:diccionario}
+\small\begin{tabularx}{\linewidth}{@{}P{.28\linewidth}YY@{}}\toprule
+Concepto & Significado & Control previsto\\\midrule
+Identificador del evento & Identidad estable del hecho publicado & Mantenerla durante reintentos.\\
+Tipo y versión & Evento definido y versión de contrato & Rechazar incompatibilidad no prevista.\\
+Tiempo de ocurrencia & Momento en la fuente & Distinguirlo de la recepción.\\
+Tiempo de ingesta & Momento de llegada a la plataforma & Medir demora y frescura.\\
+Fuente e ID de origen & Sistema y registro que originan el dato & Permitir reconstrucción y linaje.\\
+SKU y ubicación & Producto y punto operativo & Validar referencia y granularidad.\\
+Pedido o envío & Identidad de la ejecución logística & Relación explícita con tracking.\\
+Activo y medición & Equipo observado, valor y unidad & Validar rango, unidad y pertenencia.\\
+Escenario o lote & Ejecución de prueba o carga histórica & Repetibilidad y conciliación.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Ejemplo ilustrativo de evento de inventario}
+El ejemplo no sustituye el esquema aprobado. Los campos del payload y sus nombres deben ajustarse al contrato del repositorio antes de implementar un productor.
+\begin{lstlisting}
+{
+  "event_id": "evt-stock-000123",
+  "event_type": "stock_event",
+  "schema_version": "1.0",
+  "event_time": "2026-10-21T12:00:00Z",
+  "source_system": "synthetic_inventory",
+  "scenario_id": "normal-001",
+  "payload": {
+    "sku": "SKU-001",
+    "location_id": "LOC-001",
+    "quantity": 8
+  }
+}
+\end{lstlisting}
+La prueba espera que un umbral configurable de diez unidades produzca una señal de riesgo cuando corresponda. La misma identidad repetida no debe generar una actuación equivalente adicional. El dato analítico no reserva unidades ni garantiza reposición.
+
+\Seccion{Catálogo y nomenclatura de recursos}\label{anexo:catalogo}
+\subsection{Convenciones de identificación}
+Se propone el patrón lógico \path{<proyecto>-<entorno>-<dominio>-<tipo>-<proposito>}. El identificador del componente permanece independiente del nombre físico. Se usan minúsculas y abreviaturas documentadas; BigQuery y otros servicios adaptan la sintaxis a sus restricciones. En buckets se requiere un sufijo que garantice unicidad. Los ejemplos siguientes son referencias de diseño, no un inventario de recursos desplegados.
+\begin{table}[H]
+\caption{Catálogo lógico inicial para revisión}\label{tab:catalogo}
+\scriptsize\begin{tabularx}{\linewidth}{@{}P{.16\linewidth}P{.26\linewidth}P{.18\linewidth}Y@{}}\toprule
+Componente ID & Elemento y servicio & Alcance y capa & Referencia de nombre\\\midrule
+RS-STR-001 & Tópico Eventos Retail; Pub/Sub & Global; sin capa & \path{rs-dev-str-ps-events}\\
+RS-STR-002 & Tópico Insights Retail; Pub/Sub & Global; sin capa & \path{rs-dev-str-ps-insights}\\
+RS-DATA-001 & Bronze Eventos Raw; Storage & Regional; Bronze & \path{rs-dev-data-gcs-bronze-<sufijo>}\\
+RS-DATA-002 & Silver Eventos Curados; Storage & Regional; Silver & \path{rs-dev-data-gcs-silver-<sufijo>}\\
+RS-DATA-003 & Gold Insights Retail; BigQuery & Ubicación configurada; Gold & \path{rs_dev_gold}\\
+RS-SEC-002 & Cuenta de aprovisionamiento; IAM & Global; sin capa & \path{rs-dev-sec-sa-deployer}\\\bottomrule
+\end{tabularx}
+\end{table}
+Los identificadores y nombres deberán cotejarse con el catálogo Git antes de un despliegue. El staging, las suscripciones y la cuenta de ejecución se incorporan con su definición aprobada; no se completan aquí con identificadores inventados.
+
+\subsection{Labels y atributos}
+Los atributos comunes incluyen proyecto, entorno, dominio, responsable y gestión por script. El detalle de verticales se conserva en el catálogo; un recurso compartido puede usar \path{vertical=multi} cuando proceda. El atributo \path{layer} se reserva para Bronze, Silver o Gold y \path{role} describe ingesta, consumo, función técnica o seguridad. Alcance global y política de residencia se documentan por separado.
+
+\clearpage
+\Seccion{Vistas completas de ArchiMate}\label{anexo:vistas}
+Las siguientes láminas conservan las ocho exportaciones originales. Se utilizan para revisar topología y correspondencia con el modelo. La exportación detallada contiene etiquetas pequeñas; la tabla~\ref{tab:componentes} y la figura vectorial~\ref{fig:arquitectura-vector} proporcionan una lectura tipográfica de los componentes. Para una edición o impresión de gran formato conviene volver a exportar el modelo original a SVG o PDF.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=16cm,keepaspectratio]{contexto_asis.png}
+\caption{Vista contextual AS-IS de extremo a extremo}
+\Fuente{arquitectura de referencia de RetailSmart}
+\end{figure}
+
+\newcommand{\Lamina}[4]{%
+\clearpage\begin{landscape}
+\thispagestyle{fancy}
+\subsection*{#1}
+\begin{figure}[H]\centering
+\includegraphics[width=.98\linewidth,height=13.0cm,keepaspectratio,#4]{#2}
+\caption{#3}\Fuente{arquitectura de referencia de RetailSmart}
+\end{figure}
+\end{landscape}}
+\Lamina{Contexto de la solución propuesta}{contexto_tobe.png}{Vista contextual TO-BE de extremo a extremo}{}
+\Lamina{Proceso actual de atención}{proceso_asis.png}{Vista completa de atención de pedidos AS-IS}{}
+\Lamina{Proceso propuesto de atención}{proceso_tobe.png}{Vista completa de atención inteligente de pedidos TO-BE}{}
+\Lamina{Aplicaciones y procesos actuales}{aplicaciones_asis.png}{Relación entre aplicaciones y procesos AS-IS}{}
+\Lamina{Aplicaciones y procesos propuestos}{aplicaciones_tobe.png}{Relación entre aplicaciones y procesos TO-BE}{}
+\Lamina{Integración macro de la solución}{integracion_macro.png}{Vista macro de componentes e integración}{}
+% Recorte de márgenes vacíos de la exportación: se conserva el PNG completo.
+\Lamina{Integración detallada de la solución}{integracion_detalle.png}{Vista detallada de componentes e integración}{trim=0 415 728 0,clip}
+\end{document}
