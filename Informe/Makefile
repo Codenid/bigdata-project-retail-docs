@@ -1,4 +1,4 @@
-MAIN := Lumina_Retail_Informe
+MAIN := Lumina_Retail_Informe_v6
 LATEXMK := latexmk
 FLAGS := -pdf -interaction=nonstopmode -halt-on-error
 

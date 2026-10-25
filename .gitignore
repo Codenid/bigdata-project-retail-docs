@@ -1,0 +1,13 @@
+# Archivos temporales de LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+
+# Metadatos de descargas de Windows
+*:Zone.Identifier
